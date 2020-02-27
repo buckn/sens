@@ -1,0 +1,17 @@
+.columns {
+	padding: 15px;
+	height: 100%;
+}
+
+.column.no-scroll {
+	overflow: hidden;
+	position: sticky;
+}
+
+.column.scroll {
+	overflow: scroll;
+}
+
+.menu {
+	overflow: scroll;
+}
