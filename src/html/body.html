@@ -1,47 +1,32 @@
-<div class="columns">
-        <div class="column scroll is-one-fifth">
-                <aside class="menu">
-                        <p class="menu-label">
-                                Profiles
-                        </p>
-                        <ul class="menu-list">
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                                <li><a>Profile A</a></li>
-                        </ul>
-                        <p class="menu-label">
-                                Utility
-                        </p>
-                        <ul class="menu-list">
-                                <li><a>Preferences</a></li>
-                                <li><a>About</a></li>
-                        </ul>
-                </aside>
+<div class="pageContainer">
+    <svg height="45" width="225">
+      <text x="25" y="25" fill="black" class="logo">sens</text>
+  </svg>
+  <div class="columns fade">
+    <div class="column scroll is-one-quarter">
+        <aside class="menu">
+          <article class="panel is-primary" style="padding: 1%">
+            <p class="panel-tabs">
+                <a class="is-active" id="profileTab" onclick="selectTab(true)">Profiles</a>
+                <a id="gameTab" onclick="selectTab(false)">Game Folders</a>
+            </p>
+            <div class="panel-block">
+                <p class="control has-icons-left">
+                  <input class="input is-primary" type="text" placeholder="Search">
+                  <span class="icon is-left">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </span>
+            </p>
         </div>
-        <div class="column no-scroll">Auto</div>
+        <div id="control-items" class="control-items">
+            <a class="panel-block">
+              marksheet
+          </a>
+      </div>
+  </article>
+</ul>
+</aside>
+</div>
+<div class="column scroll main-panel" id="main-panel"></div>
+</div>
 </div>

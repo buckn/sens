@@ -1,6 +1,7 @@
 .columns {
 	padding: 15px;
 	height: 100%;
+	width: 100%
 }
 
 .column.no-scroll {
@@ -9,9 +10,67 @@
 }
 
 .column.scroll {
-	overflow: scroll;
+	overflow: auto;
 }
 
 .menu {
-	overflow: scroll;
+	overflow: auto;
+}
+
+.logo {
+	font-family: "Ubuntu";
+  	font-style: italic;
+	color: white;
+  	text-shadow: 2px 2px 4px #888888;
+  	font-size: 2em;
+}
+
+.main-panel {
+	padding-top: 6em;
+	position: relative;
+	display: block;
+	overflow: auto;
+}
+
+.game {
+	position: relative;
+	display: block;
+	overflow: auto;
+}
+
+.game-button {
+	padding: 1%;
+}
+
+.fade {
+    -webkit-animation: fadein .5s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein .5s; /* Firefox < 16 */
+        -ms-animation: fadein .5s; /* Internet Explorer */
+         -o-animation: fadein .5s; /* Opera < 12.1 */
+            animation: fadein .5s;
+}
+
+.short-fade {
+    -webkit-animation: fadein .1s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein .1s; /* Firefox < 16 */
+        -ms-animation: fadein .1s; /* Internet Explorer */
+         -o-animation: fadein .1s; /* Opera < 12.1 */
+            animation: fadein .1s;
+}
+
+.top-button {
+	padding-top: 6em;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+body {
+	margin-top: 2%;
+}
+
+.pageContainer {
+	padding: 1em
 }
