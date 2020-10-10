@@ -16,7 +16,7 @@ async function catchObj(jsonString) {
 }
 
 function update() {
-	get();
+	external.invoke('get');
 }
 
 function display() {
@@ -32,15 +32,11 @@ function display() {
 	}	
 }
 
-function get() {
-	external.invoke('get');
-}
-
 function show(index) {
 	update();
 	document.getElementById("main-panel").innerHTML = '<div class="field" id="profile" style="height: 100%; width: 100%;"><div align="right"><a class="button is-info top-button">Read All from Config</a></div></div>'; 
 	for (var i = 0; i < currentObj.profiles[index].game_vec.length; i++) {
-		document.getElementById("profile").innerHTML += '<br><br><br><div class="control is-expanded game short-fade"><label class="label">' + currentObj.profiles[index].game_vec[i].type + '</label><p>Sensitivity Value: </p><input class="input" type="text" value="' + currentObj.profiles[index].game_vec[i].sens + '"></p><br><p class="control"><a class="button is-info game-button">Equalize</a><a class="button is-info game-button">Read from Config</a></div>'; 
+		document.getElementById("profile").innerHTML += '<br><br><br><div class="control is-expanded game short-fade"><label class="label">' + currentObj.profiles[index].game_vec[i].type + '</label><p>Sensitivity Value: </p><input class="input" id="' + currentObj.profiles[index].game_vec[i].type + '" type="text" onkeyup="setSens(' + index + ', \'' + currentObj.profiles[index].game_vec[i].type + '\', ' + 'document.getElementById(\'' + currentObj.profiles[index].game_vec[i].type.toUpperCase() + '\').value' + ')" value="' + currentObj.profiles[index].game_vec[i].sens + '"></p><br><p class="control"><a class="button is-info game-button" onclick="eq(' + index + ',\'' + currentObj.profiles[index].game_vec[i].type + '\')">Equalize</a>   <a class="button is-info game-button">Read from Config</a></div>'; 
 	}
 }
 
@@ -56,16 +52,19 @@ function throwIt() {
 	external.invoke(JSON.stringify(currentObj));
 }
 
-function eq() {
-	
+function eq(indexI, gameI) {
+	cmd('eq', 0, gameI, false, parseInt(indexI));
+	update();
 }
 
-function setSens() {
-
+function setSens(indexI, gameI, valueI) {
+	cmd('set', parseFloat(valueI), gameI, false, parseInt(indexI));
+	update();
 }
 
 function addProf() {
-
+	cmd('add', 0.0, "CSGO", false, 0);
+	update();
 }
 
 function addSteam() {

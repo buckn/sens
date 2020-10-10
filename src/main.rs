@@ -80,7 +80,7 @@ fn main() {
                         ))
                     .unwrap()
                 }
-                _ => println!("Unimplemented Invoke Handler"),
+                _ => println!("Unimplemented Invoke Handler\n\nObject:\n\n{:?}", serde_json::from_str::<Cmd>(arg)),
             }
         }
 
