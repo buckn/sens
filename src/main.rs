@@ -9,10 +9,70 @@ extern crate lib_sens as sens;
 
 use std::io;
 use web_view::*;
+use structopt::StructOpt;
 use sens::games_enum::SupportedGames;
 use sens::profile_manager::Profiles;
 
+#[derive(StructOpt)]
+struct Cli {
+    ///sens commands: <ls> to list profiles and steam paths; <set> to set a specific sensitivity value; <eq> to equalize a profile to one game's sens value; <add> to add a profile or steam folder; <rm> to remove a steam folder or profile; <sw> to switch the active profile; <show> to show the values in a profile; <name> to change the name of a profile; <load> to load the sensitivity values from game configuration files
+    #[structopt(default_value = "gui")]
+    command: String,
+    ///Flag to deal with steam folders, not profiles
+    #[structopt(short, long)]
+    steam: bool,
+    ///Path of the steam folder
+    #[structopt(short = "p", long = "path", default_value = "default_value")]
+    path: String,
+    ///Name of the profile
+    #[structopt(short = "n", long = "name", default_value = "default_value")]
+    name: String,
+    ///Float Value that you are setting
+    #[structopt(short = "v", long = "value", default_value = "0.0")]
+    value: f64,
+    ///Index of profile or steam folder
+    #[structopt(short = "i", long = "index", default_value = "0")]
+    index: i32,
+    ///The name of the game which you are modifying the sens value of
+    #[structopt(short = "g", long = "game", default_value = "CSGO")]
+    game: String,
+}
+
 fn main() {
+    let args = Cli::from_args();
+
+    match args.command.as_str() {
+        "ls" => println!("{}", Profiles::fs_load_profiles().unwrap().to_string(args.steam)),
+        "set" => set(args.game, args.value, args.index).unwrap(),
+        "eq" => eq(args.game, args.index).unwrap(),
+        "add" => {
+            if args.steam {
+                add_steam(args.path).unwrap()
+            } else {
+                add().unwrap()
+            }
+        }
+        "rm" => {
+            if args.steam {
+                rm_steam(args.index).unwrap()
+            } else {
+                rm(args.index).unwrap()
+            }
+        }
+        "sw" => switch(args.index).unwrap(),
+        "show" => println!(
+            "{}",
+            Profiles::fs_load_profiles()
+                .unwrap()
+                .show_profile(args.index)
+        ),
+        "name" => rename(args.index, args.name).unwrap(),
+        "load" => load(args.index).unwrap(),
+        _ => gui(),
+    }
+}
+
+fn gui() {
     let html = format!(
         r#"
         {doctype}
@@ -112,7 +172,7 @@ struct Cmd {
 }
 
 impl Cmd {
-    fn new() -> Self {
+    /*fn new() -> Self {
         Self {
             command: "".to_string(),
             value: 1.0,
@@ -120,7 +180,7 @@ impl Cmd {
             steam: false,
             index: 0,
         }
-    }
+    }*/
 
     fn process(&mut self) {
         println!("processing");

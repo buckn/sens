@@ -5,13 +5,12 @@ authors = ["buckn <nathanieljbuck7@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+structopt = "0.3"
 web-view = "0.6.0"
 serde_derive = "1.0.104"
 serde_json = "1.0.48"
 serde = "1.0.104"
+lib_sens = "0.1.4"
 
 [build-dependencies]
 download_rs = "0.2.0"
-
-[dependencies.lib_sens]
-path = "../lib_sens"
